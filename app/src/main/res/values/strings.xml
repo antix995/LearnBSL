@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Learn BSL</string>
+
+    <string name="title_1">Chapter 1</string>
+    <string name="title_2">Chapter 2</string>
+    <string name="title_3">Chapter 3</string>
+    <string name="title_4">Chapter 4</string>
+
+    <string name="text_1">min cynn/The Family</string>
+    <string name="text_2">min hus/The House</string>
+    <string name="text_3">ute/Outside</string>
+    <string name="text_4">timan, weder/Seasons, Weather</string>
+
+    <string name="chapter_btn">Play Chapter</string>
+</resources>

@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "661072981373",
+    "firebase_url": "https://learnbsl-32df7.firebaseio.com",
+    "project_id": "learnbsl-32df7",
+    "storage_bucket": "learnbsl-32df7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:661072981373:android:0fd4672f14e4adb4",
+        "android_client_info": {
+          "package_name": "com.antixuni.learnbsl"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "661072981373-gbsdfdb3e9n9iuv4fib5k78fm61fipd8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.antixuni.learnbsl",
+            "certificate_hash": "73f63ec7fd6def11c75536c32b5b97aa30fbbc58"
+          }
+        },
+        {
+          "client_id": "661072981373-5s9701i1klpr28efbf5l40dsrb94jodh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBuof4iv_04Jj3RWX5T-TsRKXqxorIMHLY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "661072981373-5s9701i1klpr28efbf5l40dsrb94jodh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
