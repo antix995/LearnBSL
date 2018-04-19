@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.auth.api.Auth;
@@ -26,6 +27,11 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener,
         CompoundButton.OnCheckedChangeListener, GoogleApiClient.OnConnectionFailedListener {
@@ -43,8 +49,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ShadowTransformer mCardShadowTransformer;
     private CardFragmentPagerAdapter mFragmentCardAdapter;
     private ShadowTransformer mFragmentCardShadowTransformer;
+    private TextView mtitleTextView;
+
+    private DatabaseReference mFirebaseDatabase;
+    private FirebaseDatabase mFirebaseInstance;
 
     private boolean mShowingFragments = false;
+
+    DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
+    DatabaseReference mConditionRef = mRootRef.child("condition");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +95,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mButton = (Button) findViewById(R.id.btnTranslator);
         ((CheckBox) findViewById(R.id.checkBox)).setOnCheckedChangeListener(this);
         mButton.setOnClickListener(this);
+        mtitleTextView = (TextView) findViewById(R.id.titleTextView);
         //=============================================================================
         mCardAdapter = new CardPagerAdapter(MainActivity.this);
         mCardAdapter.addCardItem(new CardItem(R.string.title_1, R.string.text_1));
@@ -91,18 +105,37 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mFragmentCardAdapter = new CardFragmentPagerAdapter(getSupportFragmentManager(),
                 dpToPixels(2, this));
 
+        mFirebaseDatabase.child("Chapter 1").setValue("Realtime Database");
+        mFirebaseDatabase.child("Chapter 1").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String cardTitle = dataSnapshot.getValue().toString();
+                Log.e ("Hey", cardTitle);
+                mtitleTextView.setText(cardTitle);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.e("Hey", "Failed to read app title value.", databaseError.toException());
+            }
+        });
+
         mCardShadowTransformer = new ShadowTransformer(mViewPager, mCardAdapter);
         mFragmentCardShadowTransformer = new ShadowTransformer(mViewPager, mFragmentCardAdapter);
 
         mViewPager.setAdapter(mCardAdapter);
         mViewPager.setPageTransformer(false, mCardShadowTransformer);
         mViewPager.setOffscreenPageLimit(3);
+
+
     }
 
     @Override
     protected void onStart() {
         super.onStart();
         mAuth.addAuthStateListener(mAuthListener);
+
+
     }
 
     @Override
