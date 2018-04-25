@@ -45,6 +45,12 @@ public class TranslatorActivity extends AppCompatActivity implements View.OnClic
         mTranslate = (Button)findViewById(R.id.Translate);
         mImageView = (ImageView)findViewById(imageView);
         mTranslate.setOnClickListener(this);
+
+        StorageReference pathReference = storageRef.child("blankImage.jpeg");
+        Glide.with(mContext)
+                .using(new FirebaseImageLoader())
+                .load(pathReference)
+                .into(mImageView);
     }
 
     @Override

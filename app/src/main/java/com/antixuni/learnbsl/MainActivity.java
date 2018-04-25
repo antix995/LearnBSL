@@ -11,6 +11,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -51,6 +53,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ShadowTransformer mFragmentCardShadowTransformer;
     private TextView mtitleTextView;
 
+    private Button btnChangePassword, btnRemoveUser,
+            changePassword, remove, signOut;
+    private TextView email;
+
+    private EditText oldEmail, password, newPassword;
+    private ProgressBar progressBar;
+    private FirebaseAuth auth;
+
     private DatabaseReference mFirebaseDatabase;
     private FirebaseDatabase mFirebaseInstance;
 
@@ -65,14 +75,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         mAuth = FirebaseAuth.getInstance();
-        mAuthListener = new FirebaseAuth.AuthStateListener() {
+        email = (TextView) findViewById(R.id.useremail);
+
+        //get current user
+        final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        setDataToView(user);
+
+        authListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
-                if(user != null)
-                    Log.d("AUTH", "user logged in: " + user.getEmail());
-                else
-                    Log.d("AUTH", "user logged out.");
+                if (user == null) {
+                    // user auth state is changed - user is null
+                    // launch login activity
+                    startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                    finish();
+                }
             }
         };
 
@@ -105,20 +123,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mFragmentCardAdapter = new CardFragmentPagerAdapter(getSupportFragmentManager(),
                 dpToPixels(2, this));
 
-        mFirebaseDatabase.child("Chapter 1").setValue("Realtime Database");
-        mFirebaseDatabase.child("Chapter 1").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                String cardTitle = dataSnapshot.getValue().toString();
-                Log.e ("Hey", cardTitle);
-                mtitleTextView.setText(cardTitle);
-            }
+        //mFirebaseDatabase.child("Chapter 1").setValue("Realtime Database");
+        //mFirebaseDatabase.child("Chapter 1").addValueEventListener(new ValueEventListener() {
+            //@Override
+            //public void onDataChange(DataSnapshot dataSnapshot) {
+                //String cardTitle = dataSnapshot.getValue().toString();
+                //Log.e ("Hey", cardTitle);
+                //mtitleTextView.setText(cardTitle);
+            //}
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                Log.e("Hey", "Failed to read app title value.", databaseError.toException());
-            }
-        });
+            //@Override
+            //public void onCancelled(DatabaseError databaseError) {
+             //   Log.e("Hey", "Failed to read app title value.", databaseError.toException());
+            //}
+        //});
 
         mCardShadowTransformer = new ShadowTransformer(mViewPager, mCardAdapter);
         mFragmentCardShadowTransformer = new ShadowTransformer(mViewPager, mFragmentCardAdapter);
@@ -189,6 +207,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
+
+
         switch(view.getId()){
             case R.id.sign_in_button:
                 signIn();

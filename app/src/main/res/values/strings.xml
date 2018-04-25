@@ -6,10 +6,10 @@
     <string name="title_3">Chapter 3</string>
     <string name="title_4">Chapter 4</string>
 
-    <string name="text_1">min cynn/The Family</string>
-    <string name="text_2">min hus/The House</string>
-    <string name="text_3">ute/Outside</string>
-    <string name="text_4">timan, weder/Seasons, Weather</string>
+    <string name="text_1">Alphabet</string>
+    <string name="text_2">Numbers</string>
+    <string name="text_3">Animals</string>
+    <string name="text_4">Days of the week</string>
 
     <string name="chapter_btn">Play Chapter</string>
 </resources>

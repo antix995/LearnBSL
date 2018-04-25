@@ -4,14 +4,24 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v4.view.PagerAdapter;
 import android.support.v7.widget.CardView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static android.content.ContentValues.TAG;
+import static com.antixuni.learnbsl.R.id.button;
+import static com.antixuni.learnbsl.R.id.string_key;
+import static com.antixuni.learnbsl.R.id.titleTextView;
+import static com.facebook.FacebookSdk.getApplicationContext;
 
 public class CardPagerAdapter extends PagerAdapter implements CardAdapter {
     private Button btn_click;
@@ -19,6 +29,7 @@ public class CardPagerAdapter extends PagerAdapter implements CardAdapter {
     private List<CardItem> mData;
     private float mBaseElevation;
     private Context mContext;
+    private String s;
 
     //instantiate arrays to be passed to views
     public CardPagerAdapter(MainActivity mainActivity) {
@@ -53,10 +64,13 @@ public class CardPagerAdapter extends PagerAdapter implements CardAdapter {
 
     @Override
     public Object instantiateItem(ViewGroup container, final int position) {
+
         View view = LayoutInflater.from(container.getContext())
                 .inflate(R.layout.adapter, container, false);
         container.addView(view);
         bind(mData.get(position), view);
+
+
         final CardView cardView = (CardView) view.findViewById(R.id.cardView);
 
         if (mBaseElevation == 0) {
@@ -68,7 +82,7 @@ public class CardPagerAdapter extends PagerAdapter implements CardAdapter {
         btn_click.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                     openQuizActivity();
+                        openQuizActivity();
                 }
             });
 
@@ -76,12 +90,20 @@ public class CardPagerAdapter extends PagerAdapter implements CardAdapter {
     }
 
     public void openQuizActivity(){
+        /*String name = "";
+        name = btn_click.getTag().toString();
+        //Switch(name)*/
         Intent intent = new Intent(btn_click.getContext(), QuizActivity.class);
         mContext.startActivity(intent);
     }
 
     public void openQuizActivity2(){
         Intent intent = new Intent(btn_click.getContext(), QuizActivity2.class);
+        mContext.startActivity(intent);
+    }
+
+    public void openTranslatorActivity(){
+        Intent intent = new Intent(btn_click.getContext(), TranslatorActivity.class);
         mContext.startActivity(intent);
     }
 
