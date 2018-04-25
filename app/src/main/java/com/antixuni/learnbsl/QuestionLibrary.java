@@ -3,30 +3,30 @@ package com.antixuni.learnbsl;
 public class QuestionLibrary {
 
     private String mQuestions [] = {
-            "What does 'ēala!' mean?",
-            "How do you say 'I am' in old English?",
-            "'hwā is ðis?' means..?",
-            "'mōdor' is a...?",
-            "What is 'Woman' in old English?",
-            "What is 'Man' in old English?",
-            "'mægð' means..?",
-            "How do you say 'Boy' in old English?",
+            "What does this sign mean?",
+            "What does this sign mean?",
+            "What does this sign mean?",
+            "What does this sign mean?",
+            "What does this sign mean?",
+            "What does this sign mean?",
+            "What does this sign mean?",
+            "What does this sign mean?",
 
     };
 
     private String mChoices [][] = {
-            {"Hello!", "I am!", "My name is!"},
-            {"ic hāte", "ic eom", "hwā is ðis"},
-            {"What is this?", "Who is this?", "What are you called?"},
-            {"Father", "Brother", "Mother"},
-            {"mægð","cwēn","wer"},
-            {"cnapa","mægð","wer"},
-            {"boy","dog","girl"},
-            {"cnapa","gehewā","hund"}
+            {"Dog", "Cat", "Elephant"},
+            {"Giraffe", "Fish", "Dog"},
+            {"Cat", "Fish", "Elephant"},
+            {"Bull", "Cow", "Fish"},
+            {"Bunny","Chicken","Crocodile"},
+            {"Alligator","Fish","Duck"},
+            {"Cat","Chicken","Elephant"},
+            {"Chicken","Bunny","Deer"}
     };
 
-    private String mCorrectAnswers[] = {"Hello!", "ic eom", "Who is this?", "Mother","cwēn",
-            "wer","girl","cnapa"};
+    private String mCorrectAnswers[] = {"Elephant", "Giraffe", "Fish", "Cow","Bunny",
+            "Alligator","Cat","Deer"};
 
     public String getQuestion(int a) {
         String question = mQuestions[a];

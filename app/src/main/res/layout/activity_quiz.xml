@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
               xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
@@ -38,43 +39,58 @@
     <TextView
         android:id="@+id/question"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="40dp"
         android:padding="8dp"
-        android:text="Which thing is alive?"
+        android:text="Base Question"
         android:textSize="20sp"
         android:textStyle="bold"/>
 
 
-    <Button
-        android:id="@+id/choice1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:background="#0091EA"
-        android:padding="8dp"
-        android:text="bird"
-        android:textColor="#fff"/>
+    <ImageView
+        android:id="@+id/questionImage"
+        android:layout_width="@dimen/quizImage"
+        android:layout_height="@dimen/quizImage"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="30dp"
+        app:srcCompat="@drawable/com_facebook_auth_dialog_cancel_background"/>
 
-    <Button
-        android:id="@+id/choice2"
+    <GridLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:background="#0091EA"
-        android:padding="8dp"
-        android:text="door"
-        android:textColor="#fff"/>
+        android:layout_height="wrap_content">
 
-    <Button
-        android:id="@+id/choice3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:background="#0091EA"
-        android:padding="8dp"
-        android:text="rock"
-        android:textColor="#fff"/>
+        <Button
+            android:id="@+id/choice1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:background="#0091EA"
+            android:padding="8dp"
+            android:text="bird"
+            android:textColor="#fff"/>
+
+        <Button
+            android:id="@+id/choice2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:layout_gravity="center_horizontal"
+            android:background="#0091EA"
+            android:padding="8dp"
+            android:text="door"
+            android:textColor="#fff"/>
+
+        <Button
+            android:id="@+id/choice3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:background="#0091EA"
+            android:padding="8dp"
+            android:text="rock"
+            android:textColor="#fff"/>
+
+    </GridLayout>
 
     <Button
         android:id="@+id/quit"
